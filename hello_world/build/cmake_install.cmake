@@ -1,4 +1,4 @@
-# Install script for directory: C:/workspace/esp32/hello_world
+# Install script for directory: C:/workspace/micromouse-V2/hello_world
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/workspace/esp32/hello_world/build/esp-idf/cmake_install.cmake")
+  include("C:/workspace/micromouse-V2/hello_world/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/workspace/esp32/hello_world/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/workspace/micromouse-V2/hello_world/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/workspace/esp32/hello_world/build/esp-idf/esp_system/port/cmake_install.cmake")
+  include("C:/workspace/micromouse-V2/hello_world/build/esp-idf/esp_system/port/cmake_install.cmake")
 endif()
 
