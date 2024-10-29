@@ -20,15 +20,10 @@ void app_main(void) {
         return;
     }
 
-    gpio_set_level(xshut, 0);  // Liga o sensor
+    gpio_set_level(xshut, 0);  // desliga o sensor
     vTaskDelay(10 / portTICK_PERIOD_MS); // Aguardar a ativação do sensor
-    printf("Sensor no pino %d desativado.\n", xshut);
-    const char *error = vl53l0x_init(sensor);
-    if (error != NULL) {
-        printf("Erro de inicialização: %s\n", error);
-        vl53l0x_end(sensor);
-        return;
-    }
+    vl53l0x_init(sensor);
+
     vl53l0x_setAddress(sensor, 0x30); 
     vTaskDelay(10 / portTICK_PERIOD_MS); // Aguardar a ativação do sensor
     gpio_set_level(xshut, 1);  // Liga o sensor
