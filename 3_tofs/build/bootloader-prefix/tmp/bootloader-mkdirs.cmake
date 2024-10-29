@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "C:/Users/ferna/esp/v5.3.1/esp-idf/components/bootloader/subproject"
-  "C:/Users/ferna/esp/teste_tof/build/bootloader"
-  "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix"
-  "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix/tmp"
-  "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix/src"
-  "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/Leo/esp/v5.2/esp-idf/components/bootloader/subproject"
+  "C:/workspace/micromouse-V2/3_tofs/build/bootloader"
+  "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix"
+  "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix/tmp"
+  "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix/src"
+  "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/ferna/esp/teste_tof/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/workspace/micromouse-V2/3_tofs/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

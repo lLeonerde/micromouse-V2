@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ferna/esp/v5.3.1/esp-idf/components/mbedtls
+# Install script for directory: C:/Users/Leo/esp/v5.2/esp-idf/components/mbedtls
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,11 +34,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Users/ferna/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32-elf-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Users/Leo/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/ferna/esp/teste_tof/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
+  include("C:/workspace/micromouse-V2/3_tofs/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
 endif()
 

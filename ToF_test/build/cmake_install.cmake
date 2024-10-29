@@ -1,4 +1,4 @@
-# Install script for directory: C:/workspace/micromouse/ToF_test
+# Install script for directory: C:/workspace/micromouse-V2/ToF_test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/workspace/micromouse/ToF_test/build/esp-idf/cmake_install.cmake")
+  include("C:/workspace/micromouse-V2/ToF_test/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/workspace/micromouse/ToF_test/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/workspace/micromouse-V2/ToF_test/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,4 +1,4 @@
-# Install script for directory: C:/workspace/micromouse/ToF_test/main
+# Install script for directory: C:/workspace/micromouse-V2/ToF_test/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

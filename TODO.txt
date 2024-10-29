@@ -1,6 +1,4 @@
 -----------------------------Para fazer-----------------------------
-[] Teste ToF
-[] Teste Motor
 [] Código ponte h
 [] 5 ToF ao mesmo tempo
 [] Programação orientada a eventos
@@ -10,3 +8,5 @@
 -----------------------------FINALIZADO-----------------------------
 
 [X] Inicio ESP-IDF
+[X] Teste ToF
+[X] Teste Motor

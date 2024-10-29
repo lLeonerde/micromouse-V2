@@ -18,5 +18,6 @@
     "files.associations": {
         "sdkconfig.h": "c",
         "i2c.h": "c"
-    }
+    },
+    "idf.gitPathWin": "C:\\Users\\Leo\\.espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe"
 }
