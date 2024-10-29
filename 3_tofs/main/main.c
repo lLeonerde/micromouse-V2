@@ -24,7 +24,7 @@ void setSensorAddress(vl53l0x_t *sensor, uint8_t xshut_pin, uint8_t new_address)
     vTaskDelay(10 / portTICK_PERIOD_MS);  // Aguardar a desativação
     
     activateSensor(xshut_pin);  // Ativa o sensor
-    //vl53l0x_init(sensor);       // Inicializa o sensor (caso necessário)
+    vl53l0x_init(sensor);       // Inicializa o sensor (caso necessário)
     vl53l0x_setAddress(sensor, new_address); // Configura o novo endereço
     printf("Sensor no pino %d configurado para o endereço 0x%02X.\n", xshut_pin, new_address);
 }

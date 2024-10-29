@@ -2,6 +2,6 @@
   "C_Cpp.intelliSenseEngine": "default",
   "idf.flashType": "UART",
   "idf.adapterTargetName": "esp32",
-  "idf.portWin": "COM3",
+  "idf.portWin": "COM8",
   "C_Cpp.errorSquiggles": "disabled"
 }
