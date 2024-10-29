@@ -11,7 +11,7 @@
 void app_main(void) {
     
     // Configurar e inicializar o VL53L0X
-    int8_t xshut = 15; // Se não tiver controle de GPIO para xshut, use -1
+    int8_t xshut = 18; // Se não tiver controle de GPIO para xshut, use -1
     uint8_t address = 0x29; // Endereço padrão do VL53L0X
     uint8_t io_2v8 = 1; // Use 1 para I/O de 2.8V
     vl53l0x_t *sensor = vl53l0x_config(I2C_HOST, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO, xshut, address, io_2v8);

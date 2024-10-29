@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "ToF_test",
-    "project_version":    "7477713-dirty",
+    "project_version":    "46b62b5-dirty",
     "project_path":       "C:/workspace/micromouse-V2/ToF_test",
     "idf_path":           "C:/Users/Leo/esp/v5.2/esp-idf",
     "build_dir":          "C:/workspace/micromouse-V2/ToF_test/build",
