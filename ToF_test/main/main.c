@@ -6,7 +6,7 @@
 #define I2C_MASTER_SCL_IO    21    // Defina o pino SCL
 #define I2C_MASTER_SDA_IO    22    // Defina o pino SDA
 #define I2C_HOST      I2C_NUM_0   // I2C port
-#define I2C_MASTER_FREQ_HZ   100000      // Frequência do I2C
+#define I2C_MASTER_FREQ_HZ   300000      // Frequência do I2C
 
 void i2c_master_init() {
     i2c_config_t conf = {
