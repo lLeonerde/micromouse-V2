@@ -17,6 +17,17 @@ void i2c_master_init() {
     i2c_filter_enable (I2C_HOST, 5);
 }
 
+void activateSensor(uint8_t xshut_pin) {
+    gpio_set_level(xshut_pin, 1);  
+    vTaskDelay(10 / portTICK_PERIOD_MS); 
+    ESP_LOGI(__func__,"sensor pin %d activated.\n", xshut_pin);
+}
+
+void deactivateSensor(uint8_t xshut_pin) {
+    gpio_set_level(xshut_pin, 0);  
+    ESP_LOGI(__func__,"sensor pin %d deactivated.\n", xshut_pin);
+}
+
 
 // I2C address change
 void setSensorAddress(vl53l0x_t *sensor, uint8_t xshut_pin, uint8_t new_address) {
@@ -28,16 +39,6 @@ void setSensorAddress(vl53l0x_t *sensor, uint8_t xshut_pin, uint8_t new_address)
     ESP_LOGI(__func__,"sensor pin %d configured for 0x%02X.\n", xshut_pin, new_address);
 }
 
-void activateSensor(uint8_t xshut_pin) {
-    gpio_set_level(xshut_pin, 1);  
-    vTaskDelay(10 / portTICK_PERIOD_MS); 
-    ESP_LOGI(__func__,"sensor pin %d activated.\n", xshut_pin);
-}
-
-void deactivateSensor(uint8_t xshut_pin) {
-    gpio_set_level(xshut_pin, 0);  
-    ESP_LOGI(__func__,"sensor pin %d deactivated.\n", xshut_pin);
-}
 
 
 void configure_gpio(uint8_t xshut_pin) {

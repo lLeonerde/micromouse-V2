@@ -32,8 +32,7 @@ void IRAM_ATTR updateEncoder_2() {
 }
 
 // Task para ir para frente
-void forward(void *arg) {
-    while (1) {
+void forward() {
         gpio_set_level(MotFwd_1, 1);
         gpio_set_level(MotRev_1, 0);
         printf("Motor 1 Forward - Encoder Value: %ld\n", encoderValue_1);
@@ -41,64 +40,45 @@ void forward(void *arg) {
         gpio_set_level(MotFwd_2, 0);
         gpio_set_level(MotRev_2, 1);
         printf("Motor 2 Forward - Encoder Value: %ld\n", encoderValue_2);
-
         vTaskDelay(100 / portTICK_PERIOD_MS); // Aguardar um pouco para não travar o loop
-    }
+
 }
 
 // Task para ir para tras
-void back(void *arg) {
-    while (1) {
+void back() {
         gpio_set_level(MotFwd_1, 0);
         gpio_set_level(MotRev_1, 1);
-        printf("Motor 1 Reverse - Encoder Value: %ld\n", encoderValue_1);
-
         gpio_set_level(MotFwd_2, 1);
         gpio_set_level(MotRev_2, 0);
-        printf("Motor 2 Reverse - Encoder Value: %ld\n", encoderValue_2);
-
         vTaskDelay(100 / portTICK_PERIOD_MS); // Aguardar um pouco para não travar o loop
-    }
 }
 
-void stop(void*arg) {
+void stop() {
     while (1) {
         gpio_set_level(MotFwd_1, 0);
         gpio_set_level(MotRev_1, 0);
-        printf("Motor 1 Reverse - Encoder Value: %ld\n", encoderValue_1);
-
         gpio_set_level(MotFwd_2, 0);
         gpio_set_level(MotRev_2, 0);
-        printf("Motor 2 Reverse - Encoder Value: %ld\n", encoderValue_2);
-
         vTaskDelay(100 / portTICK_PERIOD_MS); // Aguardar um pouco para não travar o loop
     }
 }
 
-void right(void*arg) {
+void right() {
     while (1) {
         gpio_set_level(MotFwd_1, 0);
         gpio_set_level(MotRev_1, 1);
-        printf("Motor 1 Reverse - Encoder Value: %ld\n", encoderValue_1);
-
         gpio_set_level(MotFwd_2, 0);
         gpio_set_level(MotRev_2, 1);
-        printf("Motor 2 Reverse - Encoder Value: %ld\n", encoderValue_2);
-
         vTaskDelay(100 / portTICK_PERIOD_MS); // Aguardar um pouco para não travar o loop
     }
 }
 
-void left(void*arg) {
+void left() {
     while (1) {
         gpio_set_level(MotFwd_1, 1);
         gpio_set_level(MotRev_1, 0);
-        printf("Motor 1 Reverse - Encoder Value: %ld\n", encoderValue_1);
-
         gpio_set_level(MotFwd_2, 1);
         gpio_set_level(MotRev_2, 0);
-        printf("Motor 2 Reverse - Encoder Value: %ld\n", encoderValue_2);
-
         vTaskDelay(100 / portTICK_PERIOD_MS); // Aguardar um pouco para não travar o loop
     }
 }

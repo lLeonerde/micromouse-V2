@@ -9,7 +9,7 @@
 
 //local libraries
 #include "vl53l0x.h"
-
+#include "tofSetup.h"
 //motor define
 #define MotFwd_1  2  // Motor 1 Forward pin
 #define MotRev_1  4  // Motor 1 Reverse pin
