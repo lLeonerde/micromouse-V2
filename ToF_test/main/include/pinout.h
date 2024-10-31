@@ -10,17 +10,17 @@
 //local libraries
 #include "vl53l0x.h"
 //motor define
-#define MotFwd_1  2  // Motor 1 Forward pin
-#define MotRev_1  4  // Motor 1 Reverse pin
+#define MotFwd_1  25  // Motor 1 Forward pin
+#define MotRev_1  26  // Motor 1 Reverse pin
 
-#define MotFwd_2  18 // Motor 2 Forward pin
-#define MotRev_2  19 // Motor 2 Reverse pin
+#define MotFwd_2  32 // Motor 2 Forward pin
+#define MotRev_2  33 // Motor 2 Reverse pin
 
-#define encoderPin1_1  13 // Encoder 1 Output 'A'
-#define encoderPin2_1  12 // Encoder 1 Output 'B'
+#define encoderPin1_1  35 // Encoder 1 Output 'A'
+#define encoderPin2_1  34 // Encoder 1 Output 'B'
 
-#define encoderPin1_2  27 // Encoder 2 Output 'A'
-#define encoderPin2_2  26 // Encoder 2 Output 'B'
+#define encoderPin1_2  2 // Encoder 2 Output 'A'
+#define encoderPin2_2  14 // Encoder 2 Output 'B'
 
 
 //ToF xshut define
