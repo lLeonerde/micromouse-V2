@@ -7,7 +7,7 @@ static const char __attribute__((unused)) TAG[] = "ranger";
 #include "esp_log.h"
 #include <driver/i2c.h>
 
-#define TIMEOUT	(100/portTICK_PERIOD_MS) // I2C command timeout
+#define TIMEOUT	(200/portTICK_PERIOD_MS) // I2C command timeout
 
 #ifdef	CONFIG_VL53L0X_DEBUG
 #define VL53L0X_LOG   ESP_LOGI        // Set to allow I2C logging
