@@ -20,15 +20,24 @@ void ToFRead(){
         //printf("Distância Sensor 4: %d mm\n", distance4);
         //printf("Distância Sensor 5: %d mm\n", distance5);
 
-        vTaskDelay(100 / portTICK_PERIOD_MS); // Delay para atualizar leituras
+        vTaskDelay(1 / portTICK_PERIOD_MS); // Delay para atualizar leituras
     }
 }
 
 //PASSO DO MOTOR = 820-824
 void motorTask(){
     while(1){
-        encoderPrint();
-        vTaskDelay(100/portTICK_PERIOD_MS);
+        //encoderPrint();
+        ESP_LOGI(__func__,"fw");
+        forward();
+        vTaskDelay(20/portTICK_PERIOD_MS);
+        stop();
+        vTaskDelay(1000/portTICK_PERIOD_MS);
+        ESP_LOGI(__func__,"back");
+        back();
+        vTaskDelay(20/portTICK_PERIOD_MS);
+        stop();
+        vTaskDelay(1000/portTICK_PERIOD_MS);
     }
     
 }
