@@ -41,8 +41,8 @@ void forward() {
         gpio_set_level(MotFwd_1, 1);
         gpio_set_level(MotRev_1, 0);
 
-        gpio_set_level(MotFwd_2, 0);
-        gpio_set_level(MotRev_2, 1);
+        gpio_set_level(MotFwd_2, 1);
+        gpio_set_level(MotRev_2, 0);
 
 }
 
@@ -50,8 +50,8 @@ void forward() {
 void back() {
         gpio_set_level(MotFwd_1, 0);
         gpio_set_level(MotRev_1, 1);
-        gpio_set_level(MotFwd_2, 1);
-        gpio_set_level(MotRev_2, 0);
+        gpio_set_level(MotFwd_2, 0);
+        gpio_set_level(MotRev_2, 1);
 }
 
 void stop() {

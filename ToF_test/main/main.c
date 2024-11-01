@@ -30,12 +30,12 @@ void motorTask(){
         //encoderPrint();
         ESP_LOGI(__func__,"fw");
         forward();
-        vTaskDelay(20/portTICK_PERIOD_MS);
+        vTaskDelay(1000/portTICK_PERIOD_MS);
         stop();
         vTaskDelay(1000/portTICK_PERIOD_MS);
         ESP_LOGI(__func__,"back");
         back();
-        vTaskDelay(20/portTICK_PERIOD_MS);
+        vTaskDelay(1000/portTICK_PERIOD_MS);
         stop();
         vTaskDelay(1000/portTICK_PERIOD_MS);
     }
