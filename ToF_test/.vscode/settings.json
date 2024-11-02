@@ -1,7 +1,7 @@
 {
   "C_Cpp.intelliSenseEngine": "default",
   "idf.flashType": "UART",
-  "idf.portWin": "COM8",
+  "idf.portWin": "COM3",
   "idf.adapterTargetName": "esp32",
   "files.associations": {
     "pinout.h": "c",
@@ -35,6 +35,7 @@
     "thread": "c",
     "cmath": "c",
     "utility": "c",
-    "variant": "c"
+    "variant": "c",
+    "esp_task_wdt.h": "c"
   }
 }

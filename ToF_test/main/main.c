@@ -24,33 +24,42 @@ void ToFRead(){
     }
 }
 
+
+
 //PASSO DO MOTOR = 820-824
 void motorTask(){
-    while(1){
-        //encoderPrint();
-        ESP_LOGI(__func__,"fw");
-        forward();
-        vTaskDelay(1000/portTICK_PERIOD_MS);
+    encoderPrint();
+    while (1){
+
+        left();
+        vTaskDelay(232/portTICK_PERIOD_MS);
         stop();
         vTaskDelay(1000/portTICK_PERIOD_MS);
-        ESP_LOGI(__func__,"back");
-        back();
-        vTaskDelay(1000/portTICK_PERIOD_MS);
+
+        right();
+        vTaskDelay(232/portTICK_PERIOD_MS);
         stop();
         vTaskDelay(1000/portTICK_PERIOD_MS);
+
+        encoderPrint();
+        encoderValue_1 = 0;
+        encoderValue_2 = 0; 
     }
     
 }
 
 
 
+
 void app_main(void) {
+
+    
     setup();
-    vTaskDelay(1000/portTICK_PERIOD_MS);
+    vTaskDelay(10/portTICK_PERIOD_MS);
     setupToF();
-    vTaskDelay(1000/portTICK_PERIOD_MS);
+    //vTaskDelay(1000/portTICK_PERIOD_MS);
     xTaskCreate(&ToFRead,"ToF",2048,NULL,1,NULL);
-    xTaskCreate(&motorTask,"motor",2048,NULL,2,NULL);
+    xTaskCreate(&motorTask,"motor",2048,NULL,3,NULL);
     while (1) {
         vTaskDelay(100 / portTICK_PERIOD_MS); // Delay para atualizar leituras
     }

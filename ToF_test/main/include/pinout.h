@@ -6,6 +6,8 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 #include "driver/i2c.h"
+#include "driver/gptimer.h"
+#include "esp_task_wdt.h"
 
 //local libraries
 #include "vl53l0x.h"
@@ -35,4 +37,7 @@
 #define I2C_MASTER_SDA_IO    22    // SDA
 #define I2C_HOST      I2C_NUM_0   // I2C port
 #define I2C_MASTER_FREQ_HZ   300000      // Frequency do I2C
+
+#define MOTOR_OFSET 100
+
 #endif
