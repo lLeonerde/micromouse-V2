@@ -8,6 +8,8 @@
 #include "driver/i2c.h"
 #include "driver/gptimer.h"
 #include "esp_task_wdt.h"
+#include "driver/ledc.h"
+
 
 //local libraries
 #include "vl53l0x.h"
@@ -38,6 +40,30 @@
 #define I2C_HOST      I2C_NUM_0   // I2C port
 #define I2C_MASTER_FREQ_HZ   300000      // Frequency do I2C
 
-#define MOTOR_OFSET 100
+
+#define LEDC_TIMER              LEDC_TIMER_0
+#define LEDC_MODE               LEDC_LOW_SPEED_MODE
+#define LEDC_OUTPUT_IO_FWD_1    MotFwd_1 // Pino PWM Motor 1 para frente
+#define LEDC_OUTPUT_IO_REV_1    MotRev_1 // Pino PWM Motor 1 para trás
+#define LEDC_OUTPUT_IO_FWD_2    MotFwd_2 // Pino PWM Motor 2 para frente
+#define LEDC_OUTPUT_IO_REV_2    MotRev_2 // Pino PWM Motor 2 para trás
+#define LEDC_CHANNEL_FWD_1      LEDC_CHANNEL_0
+#define LEDC_CHANNEL_REV_1      LEDC_CHANNEL_1
+#define LEDC_CHANNEL_FWD_2      LEDC_CHANNEL_2
+#define LEDC_CHANNEL_REV_2      LEDC_CHANNEL_3
+#define LEDC_FREQUENCY          5000     // Frequência PWM em Hz
+#define LEDC_RESOLUTION         LEDC_TIMER_13_BIT
+
+#define KP 0.15  // Constante Proporcional
+#define KI 0.015 // Constante Integral
+#define KD 0.001 // Constante Derivativa
+#define MAX_SPEED 90  // Velocidade máxima em %
+#define MIN_SPEED -90    // Velocidade mínima em %
+#define TARGET_ENCODER_VALUE1 470  // Valor-alvo do encoder 820 step
+#define TARGET_ENCODER_VALUE2 -470  // Valor-alvo do encoder
+#define ERROR_TOLERANCE 2          
+#define MIN_DUTY_CYCLE 30
+
+//#define MOTOR_OFSET 100
 
 #endif

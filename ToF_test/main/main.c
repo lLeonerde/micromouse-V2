@@ -29,21 +29,11 @@ void ToFRead(){
 //PASSO DO MOTOR = 820-824
 void motorTask(){
     encoderPrint();
+    
     while (1){
-
-        left();
-        vTaskDelay(232/portTICK_PERIOD_MS);
-        stop();
-        vTaskDelay(1000/portTICK_PERIOD_MS);
-
-        right();
-        vTaskDelay(232/portTICK_PERIOD_MS);
-        stop();
-        vTaskDelay(1000/portTICK_PERIOD_MS);
-
+        control_motor_with_pid();
         encoderPrint();
-        encoderValue_1 = 0;
-        encoderValue_2 = 0; 
+        vTaskDelay(1/portTICK_PERIOD_MS);
     }
     
 }
