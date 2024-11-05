@@ -11,8 +11,8 @@ void ToFRead(){
         //distance1 = vl53l0x_readRangeContinuousMillimeters(sensor1);
         distance2 = vl53l0x_readRangeContinuousMillimeters(sensor2);
         distance3 = vl53l0x_readRangeContinuousMillimeters(sensor3);
-        distance4 = vl53l0x_readRangeContinuousMillimeters(sensor4);
-        distance5 = vl53l0x_readRangeContinuousMillimeters(sensor5);
+        //distance4 = vl53l0x_readRangeContinuousMillimeters(sensor4);
+        //distance5 = vl53l0x_readRangeContinuousMillimeters(sensor5);
 
         //printf("Distância Sensor 1: %d mm\n", distance1);
         //printf("Distância Sensor 2: %d mm\n", distance2);
@@ -31,9 +31,9 @@ void motorTask(){
     encoderPrint();
     
     while (1){
-        control_motor_with_pid();
+        control_motor_with_pid(820,-820);
         encoderPrint();
-        vTaskDelay(1/portTICK_PERIOD_MS);
+        vTaskDelay(10/portTICK_PERIOD_MS);
     }
     
 }
@@ -46,9 +46,9 @@ void app_main(void) {
     
     setup();
     vTaskDelay(10/portTICK_PERIOD_MS);
-    setupToF();
+    //setupToF();
     //vTaskDelay(1000/portTICK_PERIOD_MS);
-    xTaskCreate(&ToFRead,"ToF",2048,NULL,1,NULL);
+    //xTaskCreate(&ToFRead,"ToF",2048,NULL,1,NULL);
     xTaskCreate(&motorTask,"motor",2048,NULL,3,NULL);
     while (1) {
         vTaskDelay(100 / portTICK_PERIOD_MS); // Delay para atualizar leituras

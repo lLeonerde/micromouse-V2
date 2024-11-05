@@ -54,15 +54,15 @@
 #define LEDC_FREQUENCY          5000     // Frequência PWM em Hz
 #define LEDC_RESOLUTION         LEDC_TIMER_13_BIT
 
-#define KP 0.15  // Constante Proporcional
-#define KI 0.015 // Constante Integral
-#define KD 0.001 // Constante Derivativa
-#define MAX_SPEED 90  // Velocidade máxima em %
-#define MIN_SPEED -90    // Velocidade mínima em %
-#define TARGET_ENCODER_VALUE1 470  // Valor-alvo do encoder 820 step
-#define TARGET_ENCODER_VALUE2 -470  // Valor-alvo do encoder
-#define ERROR_TOLERANCE 2          
-#define MIN_DUTY_CYCLE 30
+#define KP 0.087     // Constante Proporcional
+#define KI 0.0040// Constante Integral 
+#define KD 0.377 // Constante Derivativa
+#define MAX_SPEED 100  // Velocidade máxima em %
+#define MIN_SPEED -100    // Velocidade mínima em %
+#define TARGET_ENCODER_VALUE1 -470  // Valor-alvo do encoder 820 step
+#define TARGET_ENCODER_VALUE2 470  // Valor-alvo do encoder
+#define ERROR_TOLERANCE 10         
+#define MIN_DUTY_CYCLE 40
 
 //#define MOTOR_OFSET 100
 

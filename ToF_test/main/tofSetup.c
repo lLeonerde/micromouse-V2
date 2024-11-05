@@ -88,13 +88,13 @@ void setupToF(){
     //setupSensor(sensor1, XSHUT_PIN_SENSOR_1, 0x30);
     setupSensor(sensor2, XSHUT_PIN_SENSOR_2, 0x31);
     setupSensor(sensor3, XSHUT_PIN_SENSOR_3, 0x32);
-    setupSensor(sensor4, XSHUT_PIN_SENSOR_4, 0x33);
-    setupSensor(sensor5, XSHUT_PIN_SENSOR_5, 0x34);
+    //setupSensor(sensor4, XSHUT_PIN_SENSOR_4, 0x33);
+    //setupSensor(sensor5, XSHUT_PIN_SENSOR_5, 0x34);
 
     //vl53l0x_startContinuous(sensor1, 2);
     vl53l0x_startContinuous(sensor2, 2);
     vl53l0x_startContinuous(sensor3, 2);
-    vl53l0x_startContinuous(sensor4, 2);
-    vl53l0x_startContinuous(sensor5, 2);
+    //vl53l0x_startContinuous(sensor4, 2);
+    //vl53l0x_startContinuous(sensor5, 2);
 }
 

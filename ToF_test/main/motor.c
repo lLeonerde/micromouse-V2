@@ -173,16 +173,16 @@ int32_t calculate_pid(int target_value, int current_value, double *integral, dou
         return (int)output;
 }
 
-void control_motor_with_pid() {
+void control_motor_with_pid(int32_t target1, int32_t target2) {
         int motor_speed_1, motor_speed_2;
 
         // Cálculo PID para cada motor
-        motor_speed_1 = calculate_pid(TARGET_ENCODER_VALUE1, encoderValue_1, &integral_1, &previous_error_1, &motor_1_stopped);
-        motor_speed_2 = calculate_pid(TARGET_ENCODER_VALUE2, encoderValue_2, &integral_2, &previous_error_2, &motor_2_stopped);
+        motor_speed_1 = calculate_pid(target1, encoderValue_1, &integral_1, &previous_error_1, &motor_1_stopped);
+        motor_speed_2 = calculate_pid(target2, encoderValue_2, &integral_2, &previous_error_2, &motor_2_stopped);
 
         // Controle do Motor 1
         if (motor_1_stopped) {
-                integral_1 = 0;
+                //integral_1 = 0;
                 set_motor_speed(2, -1, 0);  // Para o motor 1
         } else {
                 if (motor_speed_1 >= 0) {
@@ -194,7 +194,7 @@ void control_motor_with_pid() {
 
         // Controle do Motor 2
         if (motor_2_stopped) {
-                integral_2 = 0;
+                //integral_2 = 0;
                 set_motor_speed(1, -1, 0);  // Para o motor 2
         } else {
                 if (motor_speed_2 >= 0) {
