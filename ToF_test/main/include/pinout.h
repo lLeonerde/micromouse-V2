@@ -40,7 +40,7 @@
 #define I2C_MASTER_SCL_IO    21    // SCL
 #define I2C_MASTER_SDA_IO    22    // SDA
 #define I2C_HOST      I2C_NUM_0   // I2C port
-#define I2C_MASTER_FREQ_HZ   300000      // Frequency do I2C
+#define I2C_MASTER_FREQ_HZ   100000      // Frequency do I2C
 
 
 #define LEDC_TIMER              LEDC_TIMER_0

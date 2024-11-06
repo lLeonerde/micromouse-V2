@@ -1,5 +1,5 @@
 #include "pinout.h"
-#include "motor.c"
+//#include "motor.c"
 #include "tofSetup.c"
 #include "algorithm.c"
 
@@ -14,7 +14,7 @@ void ToFRead(){
         //distance1 = vl53l0x_readRangeContinuousMillimeters(sensor1);
         distance2 = vl53l0x_readRangeContinuousMillimeters(sensor2);
         distance3 = vl53l0x_readRangeContinuousMillimeters(sensor3);
-        //distance4 = vl53l0x_readRangeContinuousMillimeters(sensor4);
+        distance4 = vl53l0x_readRangeContinuousMillimeters(sensor4);
         distance5 = vl53l0x_readRangeContinuousMillimeters(sensor5);
         vTaskDelay(20 / portTICK_PERIOD_MS); // Delay para atualizar leituras
     }
@@ -54,8 +54,7 @@ void app_main(void) {
     vTaskDelay(10/portTICK_PERIOD_MS);
     setupToF();
     vTaskDelay(1000/portTICK_PERIOD_MS);
-    //xTaskCreate(&ToFRead,"ToF",2048,NULL,1,NULL);
-    //xTaskCreate(&motorTask,"motor",2048,NULL,3,NULL);
+    xTaskCreate(&ToFRead,"ToF",2048,NULL,1,NULL);
     vTaskDelay(500 / portTICK_PERIOD_MS); // Delay para atualizar leituras
     xTaskCreate(&explore_maze,"Maze",6128,NULL,1,NULL);
     

@@ -206,11 +206,24 @@ int16_t control_motor_with_pid(int32_t target1, int32_t target2) {
         }
 
         if(motor_2_stopped == true && motor_1_stopped == true){
-                return 1;
+                return 0;
         }
-        return 0;
+        return 1;
 }
 
+void turnLeft(){
+        uint8_T control = 0;
+        while(control)
+                control = control_motor_with_pid(-500, 500);
+                vTaskDelay(10/portTICKPERIODMS());
+}
+void turnRight(){
+        control_motor_with_pid(500, -500);
+}
+
+void forward(){
+        control_motor_with_pid(1000, 1000);
+}
 
 void setup(){
         gpio_config_t in_conf = {

@@ -1,5 +1,5 @@
 #include "pinout.h"
-
+#include "motor.c"
 
 // Funções de manipulação da fila
 
@@ -233,6 +233,14 @@ void returnToStart(MazeState *state) {
             }
         }
         
+        if (state->current.direction != nextMove.direction) {
+            if ((state->current.direction + 1) % 4 == nextMove.direction) {
+                turnRight();
+            } else if ((state->current.direction + 3) % 4 == nextMove.direction) {
+                turnLeft();
+            }
+        }
+
         // Atualiza a posição atual do robô para o próximo movimento
         state->current = nextMove;
         state->path[state->pathIndex++] = nextMove;  // Adiciona o movimento ao caminho
