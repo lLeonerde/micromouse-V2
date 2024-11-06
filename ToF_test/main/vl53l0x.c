@@ -686,8 +686,11 @@ vl53l0x_init (vl53l0x_t * v)
    vl53l0x_writeReg8Bit (v, MSRC_CONFIG_CONTROL, vl53l0x_readReg8Bit (v, MSRC_CONFIG_CONTROL) | 0x12);
 
    // set final range signal rate limit to 0.25 MCPS (million counts per second)
-   if ((err = vl53l0x_setSignalRateLimit (v, 0.25)))
+   if ((err = vl53l0x_setSignalRateLimit (v, 0.5))){
       return err;
+   }
+      
+      
 
    vl53l0x_writeReg8Bit (v, SYSTEM_SEQUENCE_CONFIG, 0xFF);
 
@@ -697,8 +700,11 @@ vl53l0x_init (vl53l0x_t * v)
 
    uint8_t spad_count;
    int spad_type_is_aperture;
-   if ((err = vl53l0x_getSpadInfo (v, &spad_count, &spad_type_is_aperture)))
+   if ((err = vl53l0x_getSpadInfo (v, &spad_count, &spad_type_is_aperture))){
       return err;
+   }
+
+      
    // The SPAD map (RefGoodSpadMap) is read by VL53L0X_get_info_from_device() in
    // the API, but the same data seems to be more easily readable from
    // GLOBAL_CONFIG_SPAD_ENABLES_REF_0 through _6, so read it from there

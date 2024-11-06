@@ -9,7 +9,9 @@
 #include "driver/gptimer.h"
 #include "esp_task_wdt.h"
 #include "driver/ledc.h"
-
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 //local libraries
 #include "vl53l0x.h"
@@ -65,5 +67,52 @@
 #define MIN_DUTY_CYCLE 40
 
 //#define MOTOR_OFSET 100
+
+
+#define MAZE_SIZE 8  // Define o tamanho do labirinto como 8x8 células
+#define MAX_PATH_LENGTH (MAZE_SIZE * MAZE_SIZE)  // Máximo de células que podem fazer parte do caminho
+#define INF 99999  // Define um valor de "infinito" para inicializar as distâncias
+
+// Estrutura que armazena coordenadas (x, y) e a direção do robô
+typedef struct {
+    int x;  // Posição no eixo X
+    int y;  // Posição no eixo Y
+    int direction;  // Direção atual do robô: 0=Norte, 1=Leste, 2=Sul, 3=Oeste
+} Coord;
+
+// Estrutura que representa cada célula do labirinto
+typedef struct {
+    bool visited;  // Indica se a célula já foi visitada
+    bool wallNorth;  // Indica se há uma parede ao norte
+    bool wallSouth;  // Indica se há uma parede ao sul
+    bool wallEast;   // Indica se há uma parede a leste
+    bool wallWest;   // Indica se há uma parede a oeste
+    int distance;    // Distância da célula até o alvo, usada para o cálculo do caminho
+} Cell;
+
+// Estrutura de um nó para a fila encadeada, usada no BFS
+typedef struct Node {
+    Coord coord;  // Coordenada do nó
+    struct Node *next;  // Próximo nó na fila
+} Node;
+
+// Estrutura da fila encadeada
+typedef struct {
+    Node *front;  // Posição inicial da fila
+    Node *rear;   // Posição final da fila
+    int size;     // Tamanho atual da fila
+} Queue;
+
+// Estrutura que armazena o estado do labirinto e do robô
+typedef struct {
+    Cell maze[MAZE_SIZE][MAZE_SIZE];  // Matriz representando o labirinto
+    Coord path[MAX_PATH_LENGTH];      // Array que armazena o caminho percorrido
+    int pathIndex;                    // Índice do caminho atual
+    Coord current;                    // Posição e direção atual do robô
+    bool targetReached;               // Indica se o robô chegou ao alvo (centro do labirinto)
+} MazeState;
+
+
+
 
 #endif

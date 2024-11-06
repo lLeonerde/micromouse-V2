@@ -50,13 +50,15 @@ void configure_gpio(uint8_t xshut_pin) {
 // Setup sensor function
 void setupSensor(vl53l0x_t *sensor, uint8_t xshut_pin, uint8_t new_address) {
     deactivateSensor(xshut_pin);    
-    vTaskDelay(10 / portTICK_PERIOD_MS);   
-    activateSensor(xshut_pin);   
-    if (vl53l0x_init(sensor) == ESP_OK) {
+    vTaskDelay(20 / portTICK_PERIOD_MS);   
+    activateSensor(xshut_pin);
+    vTaskDelay(20 / portTICK_PERIOD_MS);    
+    char* test = vl53l0x_init(sensor); 
+    if (test == ESP_OK) {
         vl53l0x_setAddress(sensor, new_address); 
         ESP_LOGI(__func__,"Sensor %d configured for 0x%02X.\n", xshut_pin, new_address);
     } else {
-        ESP_LOGE(__func__,"Error sensor pin: %d\n", xshut_pin);
+        ESP_LOGE(__func__,"Error sensor pin: %sd\n", test);
     }
 }
 
@@ -85,16 +87,15 @@ void setupToF(){
         return;
     }
     //starting them
-    //setupSensor(sensor1, XSHUT_PIN_SENSOR_1, 0x30);
+    setupSensor(sensor1, XSHUT_PIN_SENSOR_1, 0x30);
     setupSensor(sensor2, XSHUT_PIN_SENSOR_2, 0x31);
     setupSensor(sensor3, XSHUT_PIN_SENSOR_3, 0x32);
-    //setupSensor(sensor4, XSHUT_PIN_SENSOR_4, 0x33);
-    //setupSensor(sensor5, XSHUT_PIN_SENSOR_5, 0x34);
+    setupSensor(sensor4, XSHUT_PIN_SENSOR_4, 0x33);
+    setupSensor(sensor5, XSHUT_PIN_SENSOR_5, 0x34);
 
-    //vl53l0x_startContinuous(sensor1, 2);
+    vl53l0x_startContinuous(sensor1, 2);
     vl53l0x_startContinuous(sensor2, 2);
     vl53l0x_startContinuous(sensor3, 2);
-    //vl53l0x_startContinuous(sensor4, 2);
-    //vl53l0x_startContinuous(sensor5, 2);
+    vl53l0x_startContinuous(sensor4, 2);
+    vl53l0x_startContinuous(sensor5, 2);
 }
-

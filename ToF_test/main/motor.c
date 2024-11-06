@@ -168,12 +168,12 @@ int32_t calculate_pid(int target_value, int current_value, double *integral, dou
         if (output > 0 && output < MIN_DUTY_CYCLE) output = 0;
         if (output < 0 && output > -MIN_DUTY_CYCLE) output = 0;
 
-        ESP_LOGW("calculate_pid", "error: %f, integral: %f, derivative: %f, output: %f", error, *integral, derivative, output);
+        //ESP_LOGW("calculate_pid", "error: %f, integral: %f, derivative: %f, output: %f", error, *integral, derivative, output);
 
         return (int)output;
 }
 
-void control_motor_with_pid(int32_t target1, int32_t target2) {
+int16_t control_motor_with_pid(int32_t target1, int32_t target2) {
         int motor_speed_1, motor_speed_2;
 
         // Cálculo PID para cada motor
@@ -184,6 +184,7 @@ void control_motor_with_pid(int32_t target1, int32_t target2) {
         if (motor_1_stopped) {
                 //integral_1 = 0;
                 set_motor_speed(2, -1, 0);  // Para o motor 1
+                
         } else {
                 if (motor_speed_1 >= 0) {
                 set_motor_speed(2, 0, motor_speed_1);  // Motor 1 para frente
@@ -203,6 +204,11 @@ void control_motor_with_pid(int32_t target1, int32_t target2) {
                 set_motor_speed(1, 1, -motor_speed_2); // Motor 2 para trás
                 }
         }
+
+        if(motor_2_stopped == true && motor_1_stopped == true){
+                return 1;
+        }
+        return 0;
 }
 
 

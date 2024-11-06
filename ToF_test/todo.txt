@@ -1,0 +1,11 @@
+OQ PRECISA SER FEITO
+
+
+
+[] alterar 
+[] medir 1 celula (1063)
+[] medir 90° pro lado
+[] implementar o algoritmo flood fill
+
+
+[x] ajustar TOF

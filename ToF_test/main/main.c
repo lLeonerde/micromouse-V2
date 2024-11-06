@@ -1,43 +1,49 @@
 #include "pinout.h"
 #include "motor.c"
 #include "tofSetup.c"
+#include "algorithm.c"
+
+uint16_t distance1 = 0;
+uint16_t distance2 = 0;
+uint16_t distance3 = 0;
+uint16_t distance4 = 0;
+uint16_t distance5 = 0;
 void ToFRead(){
-    uint16_t distance1 = 0;
-    uint16_t distance2 = 0;
-    uint16_t distance3 = 0;
-    uint16_t distance4 = 0;
-    uint16_t distance5 = 0;
+    
     while(1){
         //distance1 = vl53l0x_readRangeContinuousMillimeters(sensor1);
         distance2 = vl53l0x_readRangeContinuousMillimeters(sensor2);
         distance3 = vl53l0x_readRangeContinuousMillimeters(sensor3);
         //distance4 = vl53l0x_readRangeContinuousMillimeters(sensor4);
-        //distance5 = vl53l0x_readRangeContinuousMillimeters(sensor5);
-
-        //printf("Distância Sensor 1: %d mm\n", distance1);
-        //printf("Distância Sensor 2: %d mm\n", distance2);
-        //printf("Distância Sensor 3: %d mm\n", distance3);
-        //printf("Distância Sensor 4: %d mm\n", distance4);
-        //printf("Distância Sensor 5: %d mm\n", distance5);
-
-        vTaskDelay(1 / portTICK_PERIOD_MS); // Delay para atualizar leituras
+        distance5 = vl53l0x_readRangeContinuousMillimeters(sensor5);
+        vTaskDelay(20 / portTICK_PERIOD_MS); // Delay para atualizar leituras
     }
 }
 
 
 
 //PASSO DO MOTOR = 820-824
-void motorTask(){
-    encoderPrint();
-    
-    while (1){
-        control_motor_with_pid(820,-820);
-        encoderPrint();
-        vTaskDelay(10/portTICK_PERIOD_MS);
-    }
-    
-}
 
+void explore_maze(){
+    MazeState state;
+    initMazeState(&state);  // Inicializa o estado do labirinto
+    while (!state.targetReached) {
+        ESP_LOGI(__func__,"test");
+        detectWalls(&state,distance2,distance3,distance5);  // Detecta paredes ao redor do robô 
+        updateDistances(&state);  // Atualiza as distâncias no labirinto
+        moveRobot(&state);  // Move o robô para a próxima célula
+        // Verifica se o robô chegou ao centro do labirinto
+        if (state.current.x == MAZE_SIZE/2 && state.current.y == MAZE_SIZE/2) {
+            state.targetReached = true;  // Marca o alvo como alcançado
+        }
+       
+        vTaskDelay(500/portTICK_PERIOD_MS);
+    }
+    printf("Caminho encontrado:\n");
+    while(1){
+            vTaskDelay(10/portTICK_PERIOD_MS);
+    }
+}
 
 
 
@@ -46,10 +52,13 @@ void app_main(void) {
     
     setup();
     vTaskDelay(10/portTICK_PERIOD_MS);
-    //setupToF();
-    //vTaskDelay(1000/portTICK_PERIOD_MS);
+    setupToF();
+    vTaskDelay(1000/portTICK_PERIOD_MS);
     //xTaskCreate(&ToFRead,"ToF",2048,NULL,1,NULL);
-    xTaskCreate(&motorTask,"motor",2048,NULL,3,NULL);
+    //xTaskCreate(&motorTask,"motor",2048,NULL,3,NULL);
+    vTaskDelay(500 / portTICK_PERIOD_MS); // Delay para atualizar leituras
+    xTaskCreate(&explore_maze,"Maze",6128,NULL,1,NULL);
+    
     while (1) {
         vTaskDelay(100 / portTICK_PERIOD_MS); // Delay para atualizar leituras
     }

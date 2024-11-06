@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "ToF_test",
-    "project_version":    "805f10b-dirty",
+    "project_version":    "e138f61-dirty",
     "project_path":       "C:/workspace/micromouse-V2/ToF_test",
     "idf_path":           "C:/Users/Leo/esp/v5.2/esp-idf",
     "build_dir":          "C:/workspace/micromouse-V2/ToF_test/build",
@@ -805,7 +805,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/workspace/micromouse-V2/ToF_test/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/workspace/micromouse-V2/ToF_test/main/motor.c", "C:/workspace/micromouse-V2/ToF_test/main/tofSetup.c", "C:/workspace/micromouse-V2/ToF_test/main/main.c", "C:/workspace/micromouse-V2/ToF_test/main/vl53l0x.c" ],
+            "sources": [ "C:/workspace/micromouse-V2/ToF_test/main/algorithm.c", "C:/workspace/micromouse-V2/ToF_test/main/motor.c", "C:/workspace/micromouse-V2/ToF_test/main/tofSetup.c", "C:/workspace/micromouse-V2/ToF_test/main/main.c", "C:/workspace/micromouse-V2/ToF_test/main/vl53l0x.c" ],
             "include_dirs": [ "include" ]
         },
         "mbedtls": {
