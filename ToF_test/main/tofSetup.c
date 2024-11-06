@@ -89,7 +89,7 @@ void setupToF(){
     }
     vTaskDelay(1/portTICK_PERIOD_MS);
     //starting them
-    //setupSensor(sensor1, XSHUT_PIN_SENSOR_1, 0x30);
+    setupSensor(sensor1, XSHUT_PIN_SENSOR_1, 0x30);
     setupSensor(sensor2, XSHUT_PIN_SENSOR_2, 0x31);
     vTaskDelay(1/portTICK_PERIOD_MS);
 
@@ -100,7 +100,7 @@ void setupToF(){
     setupSensor(sensor5, XSHUT_PIN_SENSOR_5, 0x34);
     vTaskDelay(1/portTICK_PERIOD_MS);
 
-    //vl53l0x_startContinuous(sensor1, 2);
+    vl53l0x_startContinuous(sensor1, 2);
     vl53l0x_startContinuous(sensor2, 2);
     vl53l0x_startContinuous(sensor3, 2);
     vl53l0x_startContinuous(sensor4, 2);

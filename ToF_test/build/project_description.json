@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "ToF_test",
-    "project_version":    "35729b3-dirty",
+    "project_version":    "9ab4395-dirty",
     "project_path":       "D:/micromouse-V2/ToF_test",
     "idf_path":           "C:/Users/jkvar/esp/v5.3.1/esp-idf",
     "build_dir":          "D:/micromouse-V2/ToF_test/build",

@@ -11,7 +11,7 @@ uint16_t distance5 = 0;
 void ToFRead(){
     
     while(1){
-        //distance1 = vl53l0x_readRangeContinuousMillimeters(sensor1);
+        distance1 = vl53l0x_readRangeContinuousMillimeters(sensor1);
         distance2 = vl53l0x_readRangeContinuousMillimeters(sensor2);
         distance3 = vl53l0x_readRangeContinuousMillimeters(sensor3);
         distance4 = vl53l0x_readRangeContinuousMillimeters(sensor4);
@@ -29,7 +29,7 @@ void explore_maze(){
     initMazeState(&state);  // Inicializa o estado do labirinto
     while (!state.targetReached) {
         ESP_LOGI(__func__,"test");
-        detectWalls(&state,distance2,distance3,distance5);  // Detecta paredes ao redor do robô 
+        detectWalls(&state,distance4,distance3,distance1);  // Detecta paredes ao redor do robô 
         updateDistances(&state);  // Atualiza as distâncias no labirinto
         moveRobot(&state);  // Move o robô para a próxima célula
         // Verifica se o robô chegou ao centro do labirinto
