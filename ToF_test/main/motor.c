@@ -168,7 +168,7 @@ int32_t calculate_pid(int target_value, int current_value, double *integral, dou
         if (output > 0 && output < MIN_DUTY_CYCLE) output = 0;
         if (output < 0 && output > -MIN_DUTY_CYCLE) output = 0;
 
-        //ESP_LOGW("calculate_pid", "error: %f, integral: %f, derivative: %f, output: %f", error, *integral, derivative, output);
+        ESP_LOGW("calculate_pid", "error: %f, integral: %f, derivative: %f, output: %f", error, *integral, derivative, output);
 
         return (int)output;
 }
@@ -212,17 +212,48 @@ int16_t control_motor_with_pid(int32_t target1, int32_t target2) {
 }
 
 void turnLeft(){
-        uint8_T control = 0;
-        while(control)
+        uint8_t control = 1;
+        ESP_LOGI(__func__,"left");
+        encoderValue_1 = 0;
+        encoderValue_2 = 0;
+        integral_1 = 0;
+        integral_2 = 0;
+        previous_error_1 = 0;
+        previous_error_2 = 0;
+        while(control){
                 control = control_motor_with_pid(-500, 500);
-                vTaskDelay(10/portTICKPERIODMS());
+                vTaskDelay(10/portTICK_PERIOD_MS);
+        }
+                
 }
 void turnRight(){
-        control_motor_with_pid(500, -500);
+        uint8_t control = 1;
+        encoderValue_1 = 0;
+        encoderValue_2 = 0;
+        integral_1 = 0;
+        integral_2 = 0;
+        previous_error_1 = 0;
+        previous_error_2 = 0;
+        ESP_LOGI(__func__,"right");
+        while(control){
+                control = control_motor_with_pid(500, -500);
+                vTaskDelay(10/portTICK_PERIOD_MS);
+        }
 }
 
 void forward(){
-        control_motor_with_pid(1000, 1000);
+        uint8_t control = 1;
+        ESP_LOGI(__func__,"forward");
+        encoderValue_1 = 0;
+        encoderValue_2 = 0;
+        integral_1 = 0;
+        integral_2 = 0;
+        previous_error_1 = 0;
+        previous_error_2 = 0;
+        while(control){
+                control = control_motor_with_pid(1020, 1020);
+                vTaskDelay(10/portTICK_PERIOD_MS);
+        }
 }
 
 void setup(){

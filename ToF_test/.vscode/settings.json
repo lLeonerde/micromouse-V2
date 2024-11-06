@@ -1,6 +1,23 @@
 {
   "C_Cpp.intelliSenseEngine": "default",
-  "idf.portWin": "COM3",
+  "idf.portWin": "COM8",
   "idf.flashType": "UART",
-  "idf.adapterTargetName": "esp32"
+  "idf.adapterTargetName": "esp32",
+  "files.associations": {
+    "*.tcc": "cpp",
+    "chrono": "cpp",
+    "exception": "cpp",
+    "memory_resource": "cpp",
+    "format": "cpp",
+    "istream": "cpp",
+    "mutex": "cpp",
+    "new": "cpp",
+    "ostream": "cpp",
+    "sstream": "cpp",
+    "stdexcept": "cpp",
+    "stop_token": "cpp",
+    "streambuf": "cpp",
+    "regex": "cpp",
+    "*.inc": "cpp"
+  }
 }

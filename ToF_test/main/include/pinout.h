@@ -12,6 +12,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "esp_system.h"
 
 //local libraries
 #include "vl53l0x.h"
@@ -40,7 +41,7 @@
 #define I2C_MASTER_SCL_IO    21    // SCL
 #define I2C_MASTER_SDA_IO    22    // SDA
 #define I2C_HOST      I2C_NUM_0   // I2C port
-#define I2C_MASTER_FREQ_HZ   100000      // Frequency do I2C
+#define I2C_MASTER_FREQ_HZ   50000      // Frequency do I2C
 
 
 #define LEDC_TIMER              LEDC_TIMER_0
@@ -56,9 +57,9 @@
 #define LEDC_FREQUENCY          5000     // Frequência PWM em Hz
 #define LEDC_RESOLUTION         LEDC_TIMER_13_BIT
 
-#define KP 0.087     // Constante Proporcional
-#define KI 0.0040// Constante Integral 
-#define KD 0.377 // Constante Derivativa
+#define KP 0.070     // Constante Proporcional
+#define KI 0.0020// Constante Integral 
+#define KD 0.677 // Constante Derivativa
 #define MAX_SPEED 100  // Velocidade máxima em %
 #define MIN_SPEED -100    // Velocidade mínima em %
 #define TARGET_ENCODER_VALUE1 -470  // Valor-alvo do encoder 820 step

@@ -45,7 +45,7 @@ void initMazeState(MazeState *state) {
     // Limpa a memória do labirinto e inicializa com valores padrões
     memset(state->maze, 0, sizeof(state->maze));
     state->pathIndex = 0;  // Inicializa o índice do caminho
-    state->current = (Coord){0, 0, 0};  // Define a posição inicial (0,0) e a direção como norte (0)
+    state->current = (Coord){0, 0, 1};  // Define a posição inicial (0,0) e a direção como norte (0)
     state->targetReached = false;  // Inicializa o estado de alvo não alcançado
     
     // Inicializa todas as distâncias das células com "infinito"
@@ -189,6 +189,15 @@ void moveRobot(MazeState *state) {
         }
     }
     
+    if (state->current.direction != nextMove.direction) {
+            if ((state->current.direction + 1) % 4 == nextMove.direction) {
+                turnRight();
+            } else if ((state->current.direction + 3) % 4 == nextMove.direction) {
+                turnLeft();
+            }
+        }
+    forward();
+
     // Atualiza a posição atual do robô para o próximo movimento
     state->current = nextMove;
     state->path[state->pathIndex++] = nextMove;  // Adiciona o movimento ao caminho
@@ -233,14 +242,7 @@ void returnToStart(MazeState *state) {
             }
         }
         
-        if (state->current.direction != nextMove.direction) {
-            if ((state->current.direction + 1) % 4 == nextMove.direction) {
-                turnRight();
-            } else if ((state->current.direction + 3) % 4 == nextMove.direction) {
-                turnLeft();
-            }
-        }
-
+        
         // Atualiza a posição atual do robô para o próximo movimento
         state->current = nextMove;
         state->path[state->pathIndex++] = nextMove;  // Adiciona o movimento ao caminho
