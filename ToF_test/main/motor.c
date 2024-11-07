@@ -4,6 +4,8 @@ long encoderValue_1 = 0;
 int16_t lastEncoded_2 = 0;
 long encoderValue_2 = 0;
 
+int32_t targetEncoder1 = 0;
+int32_t targetEncoder2 = 0;
 // Variáveis do PID para Motor 1
 double previous_error_1 = 0;
 double integral_1 = 0;
@@ -158,6 +160,8 @@ int32_t calculate_pid(int target_value, int current_value, double *integral, dou
         double derivative = error - *previous_error;
         *previous_error = error;
 
+        if((*integral) > 0 && error < 0) *integral = 0;
+        if((*integral) < 0 && error > 0) *integral = 0;
         // Cálculo do PID
         double output = KP * error + KI * (*integral) + KD * derivative;
 
@@ -165,8 +169,15 @@ int32_t calculate_pid(int target_value, int current_value, double *integral, dou
         if (output > MAX_SPEED) output = MAX_SPEED;
         if (output < MIN_SPEED) output = MIN_SPEED;
 
-        if (output > 0 && output < MIN_DUTY_CYCLE) output = 0;
-        if (output < 0 && output > -MIN_DUTY_CYCLE) output = 0;
+        if (output > 0 && output < MIN_DUTY_CYCLE) {
+                output = 0;
+                *integral += error*3;
+
+        }
+        if (output < 0 && output > -MIN_DUTY_CYCLE){
+                output = 0;
+                *integral += error*3;
+        }       
 
         ESP_LOGW("calculate_pid", "error: %f, integral: %f, derivative: %f, output: %f", error, *integral, derivative, output);
 
@@ -214,29 +225,30 @@ int16_t control_motor_with_pid(int32_t target1, int32_t target2) {
 void turnLeft(){
         uint8_t control = 1;
         ESP_LOGI(__func__,"left");
-        encoderValue_1 = 0;
-        encoderValue_2 = 0;
+        targetEncoder1 -= 505;
+        targetEncoder2 += 505;
+        //encoderValue_2 = 0;
         integral_1 = 0;
         integral_2 = 0;
         previous_error_1 = 0;
         previous_error_2 = 0;
         while(control){
-                control = control_motor_with_pid(-500, 500);
+                control = control_motor_with_pid(targetEncoder1, targetEncoder2);
                 vTaskDelay(10/portTICK_PERIOD_MS);
         }
                 
 }
 void turnRight(){
         uint8_t control = 1;
-        encoderValue_1 = 0;
-        encoderValue_2 = 0;
+        targetEncoder1 += 505;
+        targetEncoder2 -= 505;
         integral_1 = 0;
         integral_2 = 0;
         previous_error_1 = 0;
         previous_error_2 = 0;
         ESP_LOGI(__func__,"right");
         while(control){
-                control = control_motor_with_pid(500, -500);
+                control = control_motor_with_pid(targetEncoder1, targetEncoder2);
                 vTaskDelay(10/portTICK_PERIOD_MS);
         }
 }
@@ -244,14 +256,14 @@ void turnRight(){
 void forward(){
         uint8_t control = 1;
         ESP_LOGI(__func__,"forward");
-        encoderValue_1 = 0;
-        encoderValue_2 = 0;
+        targetEncoder1 += 1056;
+        targetEncoder2 += 1056;
         integral_1 = 0;
         integral_2 = 0;
         previous_error_1 = 0;
         previous_error_2 = 0;
         while(control){
-                control = control_motor_with_pid(1020, 1020);
+                control = control_motor_with_pid(targetEncoder1, targetEncoder2);
                 vTaskDelay(10/portTICK_PERIOD_MS);
         }
 }

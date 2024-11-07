@@ -46,7 +46,7 @@ void configure_gpio(uint8_t xshut_pin) {
     gpio_reset_pin(xshut_pin); 
     gpio_set_direction(xshut_pin, GPIO_MODE_OUTPUT); 
     deactivateSensor(xshut_pin);
-    vTaskDelay(500/portTICK_PERIOD_MS);
+    vTaskDelay(1/portTICK_PERIOD_MS);
 }
 // Setup sensor function
 void setupSensor(vl53l0x_t *sensor, uint8_t xshut_pin, uint8_t new_address) {
@@ -77,7 +77,7 @@ void setupToF(){
     uint8_t initial_address = 0x29; // Default address
 
     // Config/create each sensor
-    //sensor1 = vl53l0x_config(I2C_HOST, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO, XSHUT_PIN_SENSOR_1, initial_address, io_2v8);
+    sensor1 = vl53l0x_config(I2C_HOST, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO, XSHUT_PIN_SENSOR_1, initial_address, io_2v8);
     sensor2 = vl53l0x_config(I2C_HOST, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO, XSHUT_PIN_SENSOR_2, initial_address, io_2v8);
     sensor3 = vl53l0x_config(I2C_HOST, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO, XSHUT_PIN_SENSOR_3, initial_address, io_2v8);
     sensor4 = vl53l0x_config(I2C_HOST, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO, XSHUT_PIN_SENSOR_4, initial_address, io_2v8);
