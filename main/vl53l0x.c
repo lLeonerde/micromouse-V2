@@ -7,7 +7,7 @@ static const char __attribute__((unused)) TAG[] = "ranger";
 #include "esp_log.h"
 #include <driver/i2c.h>
 
-#define TIMEOUT	(1000/portTICK_PERIOD_MS) // I2C command timeout
+#define TIMEOUT	(200/portTICK_PERIOD_MS) // I2C command timeout
 
 #ifdef	CONFIG_VL53L0X_DEBUG
 #define VL53L0X_LOG   ESP_LOGI        // Set to allow I2C logging
@@ -625,23 +625,8 @@ vl53l0x_config (int8_t port, int8_t scl, int8_t sda, int8_t xshut, uint8_t addre
       return NULL;
    if (!GPIO_IS_VALID_OUTPUT_GPIO (scl) || !GPIO_IS_VALID_OUTPUT_GPIO (sda) || (xshut >= 0 && !GPIO_IS_VALID_OUTPUT_GPIO (xshut)))
       return 0;
-   if (i2c_driver_install (port, I2C_MODE_MASTER, 0, 0, 0))
-      return NULL;              // Uh?
-   i2c_config_t config = {
-      .mode = I2C_MODE_MASTER,
-      .sda_io_num = sda,
-      .scl_io_num = scl,
-      .sda_pullup_en = true,
-      .scl_pullup_en = true,
-      .master.clk_speed = 100000,
-   };
-   if (i2c_param_config (port, &config))
-   {                            // Config failed
-      i2c_driver_delete (port);
-      return NULL;
-   }
-   i2c_set_timeout (port, 80000);       // Clock stretching
-   i2c_filter_enable (port, 5);
+   
+
    if (xshut >= 0)
    {
       gpio_reset_pin (xshut);
@@ -652,7 +637,6 @@ vl53l0x_config (int8_t port, int8_t scl, int8_t sda, int8_t xshut, uint8_t addre
    vl53l0x_t *v = malloc (sizeof (*v));
    if (!v)
    {                            // Uh?
-      i2c_driver_delete (port);
       return v;
    }
    memset (v, 0, sizeof (*v));
