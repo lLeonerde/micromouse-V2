@@ -3,8 +3,6 @@
 
 This repository contains the complete C/C++ firmware for Micromouse V2, an autonomous robot designed to explore and solve a 16x16 maze. The entire system is built on the ESP32 platform, leveraging the FreeRTOS real-time operating system to manage complex, concurrent tasks such as sensor reading, motion control, and navigation algorithms.
 
-This project, developed 1.5 years ago, represents a significant milestone in my journey as an embedded systems engineer, demonstrating a strong foundation in robotics, control systems, and real-time software architecture.
-
 ---
 
 ## Core Technical Features
